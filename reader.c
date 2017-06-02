@@ -12,6 +12,7 @@ int lineNo, colNo;
 int currentChar;
 
 int readChar(void) {
+  printf("%c",currentChar);
   currentChar = getc(inputStream);
   colNo ++;
   if (currentChar == '\n') {
@@ -34,4 +35,3 @@ int openInputStream(char *fileName) {
 void closeInputStream() {
   fclose(inputStream);
 }
-

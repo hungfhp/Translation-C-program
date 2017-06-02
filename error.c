@@ -57,7 +57,7 @@ void error(ErrorCode err, int lineNo, int colNo) {
 }
 
 void missingToken(TokenType tokenType, int lineNo, int colNo) {
-  printf("%d-%d:Missing %s\n", lineNo, colNo, tokenToString(tokenType));
+  printf("\n%d-%d:Missing %s\n", lineNo, colNo, tokenToString(tokenType));
   exit(0);
 }
 
