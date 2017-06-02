@@ -1,0 +1,16 @@
+Program test; (* Factorial *)
+Type a= Array(.10.) of Integer;
+Var n : Integer;
+    k : Array(.5.) of a;
+    i : Integer;
+procedure b(b:integer);
+var c:integer;
+begin
+end;
+begin
+n:=9;
+while i <= n do
+begin
+	k(.0.)(.i.) := i;
+end;
+end.
