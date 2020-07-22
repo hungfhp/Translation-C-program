@@ -48,6 +48,12 @@ void skipComment() {
     error(ERR_END_OF_COMMENT, lineNo, colNo);
 }
 
+void skipComment1() {
+  while ((currentChar != EOF) && (currentChar != '\n')) {
+    readChar();
+  }
+}
+
 Token* readIdentKeyword(void) {
   Token *token = makeToken(TK_NONE, lineNo, colNo);
   int count = 1;
@@ -144,9 +150,19 @@ Token* getToken(void) {
     readChar(); 
     return token;
   case CHAR_SLASH:
-    token = makeToken(SB_SLASH, lineNo, colNo);
-    readChar(); 
-    return token;
+    token = makeToken(TK_NONE, lineNo, colNo);
+
+    readChar();
+
+    if (charCodes[currentChar] == CHAR_SLASH) {
+      free(token);
+      skipComment1();
+      return getToken();
+    } else {
+      token = makeToken(SB_SLASH, lineNo, colNo);
+      readChar();
+      return token;
+    }
   case CHAR_LT:
     ln = lineNo;
     cn = colNo;
@@ -226,6 +242,14 @@ Token* getToken(void) {
   case CHAR_RPAR:
     token = makeToken(SB_RPAR, lineNo, colNo);
     readChar(); 
+    return token;
+  case CHAR_LSEL:
+    token = makeToken(SB_LSEL, lineNo, colNo);
+    readChar();
+    return token;
+  case CHAR_RSEL:
+    token = makeToken(SB_RSEL, lineNo, colNo);
+    readChar();
     return token;
   default:
     token = makeToken(TK_NONE, lineNo, colNo);

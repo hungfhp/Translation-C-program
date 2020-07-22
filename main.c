@@ -63,8 +63,10 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  if (dumpCode) printCodeBuffer();
-    
+  if (dumpCode) {
+    printf("\n================================================\n\n");
+    printCodeBuffer();
+  }  
   cleanCodeBuffer();
 
   return 0;
